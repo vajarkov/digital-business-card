@@ -1,73 +1,82 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Digital Business Card
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Тестовое приложение — цифровая визитка разработчика с GraphQL API.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Приложение предоставляет информацию о профиле, профессиональных навыках, опыте работы и проектах через GraphQL API и Apollo Sandbox.
 
-## Description
+## Технологии
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- NestJS
+- TypeScript
+- GraphQL
+- Apollo Server
+- Prisma ORM
+- PostgreSQL
+- Docker
 
-## Installation
+## Возможности
 
-```bash
-$ npm install
-```
+GraphQL API позволяет получить:
 
-## Running the app
+- информацию о профиле;
+- список профессиональных навыков;
+- опыт работы;
+- список проектов и ссылки на репозитории.
 
-```bash
-# development
-$ npm run start
+## Запуск
 
-# watch mode
-$ npm run start:dev
+### 1. Запустить PostgreSQL
 
-# production mode
-$ npm run start:prod
-```
+    docker compose up -d
 
-## Test
+### 2. Установить зависимости
 
-```bash
-# unit tests
-$ npm run test
+    npm install
 
-# e2e tests
-$ npm run test:e2e
+### 3. Применить миграции
 
-# test coverage
-$ npm run test:cov
-```
+    npx prisma migrate dev
 
-## Support
+### 4. Заполнить базу тестовыми данными
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+    npm run db:seed
 
-## Stay in touch
+### 5. Запустить приложение
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+    npm run start:dev
 
-## License
+После запуска GraphQL API доступен через Apollo Sandbox.
 
-Nest is [MIT licensed](LICENSE).
+## Пример GraphQL-запроса
+
+    query {
+      profile {
+        name
+        description
+        githubUrl
+        linkedinUrl
+
+        skills {
+          title
+        }
+
+        experiences {
+          company
+          position
+          period
+          achievements
+        }
+
+        projects {
+          name
+          url
+        }
+      }
+    }
+
+## Автор
+
+**Вадим Жарков**
+
+- GitHub: https://github.com/vajarkov
+- LinkedIn: https://www.linkedin.com/in/%D0%B2%D0%B0%D0%B4%D0%B8%D0%BC-%D0%B6%D0%B0%D1%80%D0%BA%D0%BE%D0%B2-b89a0a34/

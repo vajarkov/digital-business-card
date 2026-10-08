@@ -55,4 +55,18 @@ pids
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
+# Local AI/editor configuration
+.agents/
+.claude/
+.windsurf/
+
+# Temporary backup files
+*.before-nest12
+
+# TypeScript build info
+*.tsbuildinfo
+
+# Prisma local skills
+skills-lock.json
+
 /src/generated/prisma
